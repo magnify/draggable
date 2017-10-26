@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link media="all" rel="stylesheet" href="css/wall.css">
+  <title>Hennetec Picture Wall</title>
+</head>
+<body>
+
+<div class="wall-canvas">
+</div>
+
+<div class="wall-navigation">
+  <button class="wall-add">Add</button>
+</div>
+
+
+</body>
+</html>
+
+<script src="/node_modules/@shopify/draggable/lib/draggable.js"></script>
+
+
+<script>
+
+  var wallCanvas = document.getElementsByClassName('wall-canvas');
+  var wallAdd = document.getElementsByClassName('wall-add');
+  var count = 0;
+
+  function addNew() {
+    // Get the element you want to add your new element before or after
+    var target = document.querySelector('.wall-canvas');
+
+    // Create the new element
+    // This can be any valid HTML element: p, article, span, etc...
+    var div = document.createElement('div');
+
+    // Add content to the new element
+    div.setAttribute("data-wall-id", "wall-id-" + count);
+
+    // Add content to the new element
+    div.classList.add('wall-picture');
+
+    // Add content to the new element
+    div.innerHTML = 'Picture' + count;
+
+    // You could also add classes, IDs, and so on
+    // div is a fully manipulatable DOM Node
+
+    // Insert the element before our target element
+    target.appendChild(div);
+  }
+
+  wallAdd[0].onclick = function() {
+    count = count + 1;
+
+    addNew();
+
+    return false;
+  };
+
+  new Draggable.Droppable(wallCanvas, {
+    draggable: '.wall-picture',
+    droppable: '.wall-canvas',
+    collidables: '.wall-picture',
+    plugins: [Draggable.Collidable]
+  }).on('droppable:over', () => console.log('droppable:over'))
+    .on('drag:move', () => console.log('drag:move'))
+    .on('collidable:in', () => console.log('collidable:in'));
+</script>

@@ -1,0 +1,19 @@
+.wall-canvas {
+    background-color: aqua;
+    display: flex;
+    height: 600px;
+    width: 80%;
+}
+
+.wall-picture {
+    background-color: crimson;
+    height: 80px;
+    width: 100px;
+}
+
+.wall-navigation {
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
